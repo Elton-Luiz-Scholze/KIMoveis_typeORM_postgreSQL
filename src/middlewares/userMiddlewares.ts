@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
-import { userRepository } from "../repository/userRepository";
+import { userRepository } from "../repositories/userRepository";
 import { AppError } from "../errors/errors"
 
 const verifyEmailExistsMiddleware = async (req : Request, res : Response, next : NextFunction) => {

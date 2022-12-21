@@ -1,5 +1,5 @@
 import { IUser, IUserRequest, IUserUpdate } from "../interfaces/users";
-import { userRepository } from "../repository/userRepository";
+import { userRepository } from "../repositories/userRepository";
 import { listUsersSchema, returnUserSchema } from "../schemas/userSchemas";
 
 const createUserService = async (UserData: IUserRequest): Promise<IUser> => {
