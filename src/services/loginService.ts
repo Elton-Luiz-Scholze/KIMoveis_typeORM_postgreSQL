@@ -1,10 +1,8 @@
-import AppDataSource from "../data-source";
-import { User } from "../entities/userEntity";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+import { userRepository } from "../repositories/userRepository";
 
 const loginService = async (email: string) => {
-    const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOneByOrFail({email: email});
     
     const token = jwt.sign(
