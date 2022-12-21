@@ -9,8 +9,8 @@ class Categories {
     @Column({ unique: true })
     name: string
 
-    @OneToMany(() => Properties, properties => properties.categories)
-    properties: Properties[]
+    @OneToMany(() => Properties, properties => properties.category)
+    property: Properties[]
 }
 
 

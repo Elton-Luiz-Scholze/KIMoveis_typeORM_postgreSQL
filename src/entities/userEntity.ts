@@ -1,5 +1,6 @@
 import { hashSync } from "bcryptjs";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeUpdate, BeforeInsert, OneToMany } from "typeorm";
+import { Schedules_user_properties } from "./schedulesUserPropertiesEntity";
 
 @Entity("usuarios")
 class User {
@@ -32,6 +33,9 @@ class User {
     hashPassWord() {
         this.password = hashSync(this.password,10)
     }
+
+    @OneToMany(() => Schedules_user_properties, schedules => schedules.user)
+    schedules: Schedules_user_properties[]
 }
 
 export { User }
