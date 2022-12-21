@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Addresses } from "./addressesEntity";
 import { Categories } from "./categoriesEntity";
+import { Schedules_user_properties } from "./schedulesUserPropertiesEntity";
 
 @Entity()
 class Properties {
@@ -24,10 +25,13 @@ class Properties {
 
     @OneToOne(() => Addresses)
     @JoinColumn()
-    addresses: Addresses
+    address: Addresses
 
-    @ManyToOne(() => Categories, categories => categories.properties)
-    categories: Categories
+    @ManyToOne(() => Categories, categories => categories.property)
+    category: Categories
+
+    @OneToMany(() => Schedules_user_properties, schedules => schedules.property)
+    schedules: Schedules_user_properties[]
 }
 
 export { Properties };
