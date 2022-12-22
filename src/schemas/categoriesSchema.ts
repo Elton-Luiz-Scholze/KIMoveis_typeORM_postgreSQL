@@ -10,4 +10,6 @@ const returnedCategorySchema: yup.SchemaOf<ICategoryRequest> = yup.object().shap
     id: yup.string().notRequired()
 });
 
-export { createCategorySchema, returnedCategorySchema };
+const listAllCategoriesSchema: yup.SchemaOf<ICategoryRequest[]> = yup.array(returnedCategorySchema);
+
+export { createCategorySchema, returnedCategorySchema, listAllCategoriesSchema };
