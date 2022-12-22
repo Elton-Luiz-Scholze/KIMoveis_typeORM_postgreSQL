@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCategoryService, listAllCategoriesService } from "../services/categoriesService";
+import { createCategoryService, listAllCategoriesService, listAllPropertiesByCategoryIdService } from "../services/categoriesService";
 
 const createCategoryController = async (req: Request, res: Response) => {
     const newCategory = await createCategoryService(req.body);
@@ -13,4 +13,11 @@ const listAllCategoriesController = async (req: Request, res: Response) => {
     return res.status(200).json(categories);
 }
 
-export { createCategoryController, listAllCategoriesController };
+const listAllPropertiesByCategoryIdController = async (req: Request, res: Response) => {
+    const id = req.params.id
+    const properties = await listAllPropertiesByCategoryIdService(id);
+
+    return res.status(200).json(properties);
+}
+
+export { createCategoryController, listAllCategoriesController, listAllPropertiesByCategoryIdController };
