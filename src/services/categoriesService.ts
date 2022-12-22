@@ -1,6 +1,6 @@
 import { ICategoryRequest } from "../interfaces/categories";
 import { categoryRepository } from "../repositories/categoryRepository";
-import { returnedCategorySchema } from "../schemas/categoriesSchema";
+import { listAllCategoriesSchema, returnedCategorySchema } from "../schemas/categoriesSchema";
 
 const createCategoryService = async (data: ICategoryRequest): Promise<ICategoryRequest>=> {  
     const createCategory = categoryRepository.create(data);
@@ -14,4 +14,14 @@ const createCategoryService = async (data: ICategoryRequest): Promise<ICategoryR
     return returnedCategory;
 }
 
-export { createCategoryService };
+const listAllCategoriesService = async () => {
+    const allCategories = await categoryRepository.find();
+
+    const returnedAllCategories = await listAllCategoriesSchema.validate(allCategories, {
+        stripUnknown: true
+    });
+
+    return returnedAllCategories;
+}
+
+export { createCategoryService, listAllCategoriesService };
