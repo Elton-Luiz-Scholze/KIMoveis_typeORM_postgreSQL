@@ -3,7 +3,7 @@ import { IPropertyRequest } from "../interfaces/properties";
 import { addressRepository } from "../repositories/addressRepository";
 import { categoryRepository } from "../repositories/categoryRepository";
 import { propertyRepository } from "../repositories/propertyRepository";
-import { returnPropertySchema } from "../schemas/propertiesSchema";
+import { returnAllPropertiesSchema, returnPropertySchema } from "../schemas/propertiesSchema";
 
 const createPropertyService = async (data:IPropertyRequest) => {
     const { address, categoryId } = data;
@@ -38,4 +38,19 @@ const createPropertyService = async (data:IPropertyRequest) => {
     return returnedNewProperty;
 }
 
-export { createPropertyService };
+const listAllPropertiesService = async () => {
+    const allProperties = await propertyRepository.find({
+        relations: {
+            address: true,
+            category: true
+        }
+    });
+    
+    const returnedAllProperties = await returnAllPropertiesSchema.validate(allProperties, {
+        stripUnknown: true
+    });
+
+    return returnedAllProperties;
+}
+
+export { createPropertyService, listAllPropertiesService };

@@ -15,24 +15,26 @@ const createPropertySchema: yup.SchemaOf<IPropertyRequest> = yup.object().shape(
 });
 
 const returnPropertySchema = yup.object().shape({
-    value: yup.number().required(),
-    size: yup.number().required(),
+    value: yup.number().notRequired(),
+    size: yup.number().notRequired(),
     address: yup.object().shape({ 
-        id: yup.string().required(),
-        district: yup.string().required(),
-        zipCode: yup.string().required(),
+        id: yup.string().notRequired(),
+        district: yup.string().notRequired(),
+        zipCode: yup.string().notRequired(),
         number: yup.string().notRequired(),
-        city: yup.string().required(),
-        state: yup.string().required()
+        city: yup.string().notRequired(),
+        state: yup.string().notRequired()
     }),
     category: yup.object().shape({
-        id: yup.string().required(),
-        name: yup.string().required()
+        id: yup.string().notRequired(),
+        name: yup.string().notRequired()
     }),
-    id: yup.string().required(),
-    sold: yup.boolean().required(),
-    createdAt: yup.string().required(),
-    updatedAt: yup.string().required()
+    id: yup.string().notRequired(),
+    sold: yup.boolean().notRequired(),
+    createdAt: yup.string().notRequired(),
+    updatedAt: yup.string().notRequired()
 });
 
-export { createPropertySchema, returnPropertySchema };
+const returnAllPropertiesSchema = yup.array(returnPropertySchema);
+
+export { createPropertySchema, returnPropertySchema, returnAllPropertiesSchema };
