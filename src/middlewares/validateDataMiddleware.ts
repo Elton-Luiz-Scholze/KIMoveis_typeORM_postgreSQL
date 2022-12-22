@@ -13,7 +13,7 @@ const validateDataMiddleware = (schema: AnySchema) => async (req: Request, res: 
         next();
 
     } catch (error) {
-        return res.status(400).json({ error: error.errors });
+        return res.status(400).json({ message: error.errors });
     }
 }
 
