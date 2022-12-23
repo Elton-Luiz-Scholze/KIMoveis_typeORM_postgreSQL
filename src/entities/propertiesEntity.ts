@@ -27,7 +27,7 @@ class Properties {
     @JoinColumn()
     address: Addresses
 
-    @ManyToOne(() => Categories, categories => categories.property)
+    @ManyToOne(() => Categories, categories => categories.properties)
     category: Categories
 
     @OneToMany(() => Schedules_user_properties, schedules => schedules.property)
