@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Properties } from "./propertiesEntity";
 import { User } from "./userEntity";
 
-@Entity()
+@Entity("schedules")
 class Schedules_user_properties {
     @PrimaryGeneratedColumn("uuid")
     id: string

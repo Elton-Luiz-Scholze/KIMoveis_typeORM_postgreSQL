@@ -3,7 +3,7 @@ import { Addresses } from "./addressesEntity";
 import { Categories } from "./categoriesEntity";
 import { Schedules_user_properties } from "./schedulesUserPropertiesEntity";
 
-@Entity()
+@Entity("properties")
 class Properties {
     @PrimaryGeneratedColumn("uuid")
     id: string
